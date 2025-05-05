@@ -109,7 +109,7 @@ const createUserNames = function (accounts) {
 };
 
 createUserNames(accounts);
-console.log(accounts);
+// console.log(accounts);
 
 //DISPLAY BANK BALANCE
 
@@ -121,3 +121,29 @@ const bankBalance = function (movements) {
 }
 
 bankBalance(movements);
+
+//DISPLAY SUMMARY
+
+const displaySummary = function (movements) {
+  //deposits
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((mov, curr)=>mov + curr, 0)
+    labelSumIn.textContent = `${incomes}€`
+  //withdrawals
+  const outcome = movements
+    .filter(mov => mov < 0)
+    .reduce((mov, curr)=>mov + curr, 0)
+    labelSumOut.textContent = `${Math.abs(outcome)}€`
+  //Interest
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => mov * account1.interestRate/100)
+    .reduce((mov, curr)=>mov + curr, 0)
+    labelSumInterest.textContent = `${interest}€`
+}
+
+displaySummary(account1.movements);
+
+
+
