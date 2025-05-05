@@ -93,3 +93,31 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+//CREATING USERNAMES
+
+const createUserNames = function (accounts) {
+  accounts.forEach(function(acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(function (word) {
+        return word[0];
+    })
+    .join('');
+  })
+};
+
+createUserNames(accounts);
+console.log(accounts);
+
+//DISPLAY BANK BALANCE
+
+const bankBalance = function (movements) {
+  const balance = movements.reduce(function(acc, mov) {
+    return acc + mov;
+  }, 0)
+  labelBalance.textContent = `${balance}€`; 
+}
+
+bankBalance(movements);
