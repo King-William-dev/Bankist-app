@@ -197,5 +197,15 @@ btnTransfer.addEventListener('click', function (e) {
   inputTransferTo.value = inputTransferAmount.value = '';
 })
 
+//CLOSE ACCOUNT
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(acc=>acc.userName === inputCloseUsername.value)
+  if (currentAccount?.pin === Number(inputClosePin.value)) {
+    console.log('correct credentials');
+  }
+})
+
 
 
